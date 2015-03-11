@@ -53,13 +53,12 @@ class StatusesController < ApplicationController
 
   # DELETE /statuses/1
   # DELETE /statuses/1.json
-  def destroy
-    @status.destroy
-    respond_to do |format|
-      format.html { redirect_to statuses_url, notice: 'Status was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+def destroy
+    @status = Status.find(params[:id])
+    @status.destroy!
+    redirect_to '/statuses', :notice => "Your patient has been deleted"
+end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
